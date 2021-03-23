@@ -12,7 +12,7 @@ import SignUpScreen from './src/screens/SignUpScreen';
 
 import { firebaseConfig } from './env';
 
-require('Firebase/firestore');
+require('firebase/firestore');
 
 
 
