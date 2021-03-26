@@ -16,7 +16,6 @@ export default function LogOutButton() {
             });
          })
          .catch((error) => {
-            console.log(error.code, error.message);
             Alert.alert("ログアウトに失敗しました");
          });
     }

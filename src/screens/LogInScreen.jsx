@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert  } from 'rea
 import firebase from 'firebase';
 
 import Button from '../components/Button';
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
+import { translateErrors } from '../utils';
 
 export default function LogInScreen(props){
     const { navigation } = props;
@@ -29,9 +30,7 @@ export default function LogInScreen(props){
         setLoading(true);
         firebase.auth().signInWithEmailAndPassword(email, password)
          .then(
-            (userCredential) => {
-                const {user} = userCredential;
-                console.log(user.uid);
+            () => {
                 navigation.reset({
                     index: 0,
                     routes: [{ name: 'MemoList' }],
@@ -40,7 +39,8 @@ export default function LogInScreen(props){
          )
          .catch(
             (error) => {
-                Alert.alert(error.code);
+                const errorMsg = translateErrors(error.code);
+                Alert.alert(errorMsg.title, errorMsg.description);
             }
          ).then(() => {
              setLoading(false);

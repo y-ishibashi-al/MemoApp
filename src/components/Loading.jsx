@@ -8,7 +8,7 @@ export default function Loading(props){
         return null;
     }
     return (
-        <View style={style.container} >
+        <View style={styles.container} >
             <View style={styles.inner}>
                 <ActivityIndicator size="large" color="#000000" />
             </View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: 'rgba(255,255,255,0.5)',
-        zindex: 5,
+        zIndex: 5,
     },
     inner: {
         marginBottom: 80,

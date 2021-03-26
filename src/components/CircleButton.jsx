@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { func, shape, string } from 'prop-types';
 import { Feather } from '@expo/vector-icons';

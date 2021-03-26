@@ -7,6 +7,7 @@ import CircleButton from '../components/CircleButton';
 import LogOutButton from '../components/LogOutButton';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
+import { translateErrors } from '../utils';
 
 
 export default function MemoListScreen(props){
@@ -29,7 +30,6 @@ export default function MemoListScreen(props){
             unsubscribe = ref.onSnapshot((snapshot) => {
                 const userMemos = [];
                 snapshot.forEach((doc) => {
-                    console.log(doc.id, doc.data());
                     const data = doc.data();
                     userMemos.push[{
                         id: doc.id,
@@ -39,8 +39,7 @@ export default function MemoListScreen(props){
                 });
                 setMemos(userMemos);
                 setLoading(false);
-            }, (error) => {
-                console.log(error);
+            }, () => {
                 setLoading(false);
                 Alert.alert('データの読み込みに失敗しました。');
             });
@@ -56,13 +55,13 @@ export default function MemoListScreen(props){
                 <View style={emptyStyles.inner}>
                     <Text style={emptyStyles.title}>最初のメモを作成しよう！</Text>
                     <Button
-                        style={emptyStyles.button}
+                        // style={emptyStyles.button}
                         label="作成する"
                         onPress={() => { navigation.navigate('MemoCreate'); }}
                     />
                 </View>
             </View>
-        )
+        );
     }
 
     return (
@@ -74,7 +73,7 @@ export default function MemoListScreen(props){
                 onPress={ () => { navigation.navigate('MemoCreate'); }}
              />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -101,4 +100,4 @@ const emptyStyles = StyleSheet.create({
     button: {
         alignSelf: 'center',
     },
-})
+});
